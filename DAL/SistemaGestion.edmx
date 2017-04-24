@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemaGestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="Id_Cliente" />
+          </Key>
+          <Property Name="Id_Cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Venta" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="200" />
+          <Property Name="Telefono" Type="int" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Numero_De_Calle" Type="int" />
+          <Property Name="Talle" Type="varchar" MaxLength="50" />
+          <Property Name="Recorrido" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha_Alta" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pagos">
+          <Key>
+            <PropertyRef Name="Id_Pago" />
+          </Key>
+          <Property Name="Id_Pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Venta" Type="int" Nullable="false" />
+          <Property Name="Cantidad_Pagada" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="Fecha_De_Pago" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Pedidos">
+          <Key>
+            <PropertyRef Name="Id_Pedidos" />
+          </Key>
+          <Property Name="Id_Pedidos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_De_Producto" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nombre_Del_Cliente" Type="varchar" MaxLength="200" />
+          <Property Name="Articulo" Type="varchar" MaxLength="200" />
+          <Property Name="Talle_Del_Producto" Type="varchar" MaxLength="200" />
+          <Property Name="Fecha_Del_Pedido" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="Id_Venta" />
+          </Key>
+          <Property Name="Id_Venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Cliente" Type="int" Nullable="false" />
+          <Property Name="Precio_Real_Del_Producto" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Precio_De_Venta_Del_Producto" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Talle" Type="varchar" MaxLength="150" />
+          <Property Name="Codigo_Articulo" Type="varchar" MaxLength="150" />
+          <Property Name="Producto_Vendido" Type="varchar" MaxLength="250" />
+          <Property Name="Fecha_De_Venta" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_Cliente_Id_Venta">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id_Cliente" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="Id_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Id_Venta">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_Venta" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Id_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaGestionModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pagos" EntityType="Self.Pagos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cliente_Id_Venta" Association="Self.FK_Cliente_Id_Venta">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Id_Venta" Association="Self.FK_Pagos_Id_Venta">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaGestionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id_Cliente" />
+          </Key>
+          <Property Name="Id_Cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Venta" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="Int32" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_De_Calle" Type="Int32" />
+          <Property Name="Talle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recorrido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Alta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK_Cliente_Id_Venta" FromRole="Clientes" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="Id_Pago" />
+          </Key>
+          <Property Name="Id_Pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Venta" Type="Int32" Nullable="false" />
+          <Property Name="Cantidad_Pagada" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Fecha_De_Pago" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Pagos_Id_Venta" FromRole="Pagos" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Id_Pedidos" />
+          </Key>
+          <Property Name="Id_Pedidos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_De_Producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre_Del_Cliente" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Articulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Talle_Del_Producto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Del_Pedido" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="Id_Venta" />
+          </Key>
+          <Property Name="Id_Venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Precio_Real_Del_Producto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Precio_De_Venta_Del_Producto" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Talle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Codigo_Articulo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Producto_Vendido" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_De_Venta" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Id_Venta" FromRole="Ventas" ToRole="Clientes" />
+          <NavigationProperty Name="Pagos" Relationship="Self.FK_Pagos_Id_Venta" FromRole="Ventas" ToRole="Pagos" />
+        </EntityType>
+        <Association Name="FK_Cliente_Id_Venta">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Ventas" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id_Cliente" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="Id_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pagos_Id_Venta">
+          <End Role="Ventas" Type="Self.Venta" Multiplicity="1" />
+          <End Role="Pagos" Type="Self.Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_Venta" />
+            </Principal>
+            <Dependent Role="Pagos">
+              <PropertyRef Name="Id_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaGestionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Pagos" EntityType="Self.Pago" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedido" />
+          <EntitySet Name="Ventas" EntityType="Self.Venta" />
+          <AssociationSet Name="FK_Cliente_Id_Venta" Association="Self.FK_Cliente_Id_Venta">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pagos_Id_Venta" Association="Self.FK_Pagos_Id_Venta">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Pagos" EntitySet="Pagos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaGestionModelStoreContainer" CdmEntityContainer="SistemaGestionEntities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="SistemaGestionModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+                <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Numero_De_Calle" ColumnName="Numero_De_Calle" />
+                <ScalarProperty Name="Talle" ColumnName="Talle" />
+                <ScalarProperty Name="Recorrido" ColumnName="Recorrido" />
+                <ScalarProperty Name="Fecha_Alta" ColumnName="Fecha_Alta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagos">
+            <EntityTypeMapping TypeName="SistemaGestionModel.Pago">
+              <MappingFragment StoreEntitySet="Pagos">
+                <ScalarProperty Name="Id_Pago" ColumnName="Id_Pago" />
+                <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+                <ScalarProperty Name="Cantidad_Pagada" ColumnName="Cantidad_Pagada" />
+                <ScalarProperty Name="Fecha_De_Pago" ColumnName="Fecha_De_Pago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedidos">
+            <EntityTypeMapping TypeName="SistemaGestionModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedidos">
+                <ScalarProperty Name="Id_Pedidos" ColumnName="Id_Pedidos" />
+                <ScalarProperty Name="Nombre_De_Producto" ColumnName="Nombre_De_Producto" />
+                <ScalarProperty Name="Nombre_Del_Cliente" ColumnName="Nombre_Del_Cliente" />
+                <ScalarProperty Name="Articulo" ColumnName="Articulo" />
+                <ScalarProperty Name="Talle_Del_Producto" ColumnName="Talle_Del_Producto" />
+                <ScalarProperty Name="Fecha_Del_Pedido" ColumnName="Fecha_Del_Pedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas">
+            <EntityTypeMapping TypeName="SistemaGestionModel.Venta">
+              <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+                <ScalarProperty Name="Precio_Real_Del_Producto" ColumnName="Precio_Real_Del_Producto" />
+                <ScalarProperty Name="Precio_De_Venta_Del_Producto" ColumnName="Precio_De_Venta_Del_Producto" />
+                <ScalarProperty Name="Talle" ColumnName="Talle" />
+                <ScalarProperty Name="Codigo_Articulo" ColumnName="Codigo_Articulo" />
+                <ScalarProperty Name="Producto_Vendido" ColumnName="Producto_Vendido" />
+                <ScalarProperty Name="Fecha_De_Venta" ColumnName="Fecha_De_Venta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

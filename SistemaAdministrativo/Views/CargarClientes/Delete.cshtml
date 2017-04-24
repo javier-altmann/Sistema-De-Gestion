@@ -1,0 +1,97 @@
+﻿@model SistemaAdministrativo.Models.ClientesViewModel
+
+@{
+    ViewBag.Title = "Eliminar Cliente";
+}
+
+<h2>¿Esta seguro qué desea Eliminar el Cliente?</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Altura de domicilio")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_De_Calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Fecha de alta")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Alta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recorrido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recorrido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Talle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Talle)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index")">
+                <button type="button" class="btn btn-primary btn-sm">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </button>
+            </a>
+            <input type="submit" value="Eliminar Cliente" class="btn btn-primary" />
+
+        </div>
+
+    }
+</div>

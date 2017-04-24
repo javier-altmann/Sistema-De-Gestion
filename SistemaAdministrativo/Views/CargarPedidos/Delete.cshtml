@@ -1,0 +1,66 @@
+﻿@model SistemaAdministrativo.Models.PedidosViewModel
+
+@{
+    ViewBag.Title = "Elliminar Producto";
+}
+
+<h3>¿Esta seguro qué desea Eliminar el Producto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Nombre Del Producto")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_De_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Talle Del Producto")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Talle_Del_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Articulo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Articulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Fecha Del Pedido")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Del_Pedido)
+        </dd>
+        <dt>
+            @Html.DisplayName("Nombre del Cliente")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Del_Cliente)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index")">
+                <button type="button" class="btn btn-primary btn-sm">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </button>
+            </a>
+            <input type="submit" value="Eliminar Producto" class="btn btn-primary" /> 
+
+        </div>
+    }
+</div>

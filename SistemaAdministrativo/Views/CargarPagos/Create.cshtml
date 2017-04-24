@@ -1,0 +1,66 @@
+﻿@model SistemaAdministrativo.Models.PagosViewModel
+
+@{
+    ViewBag.Title = "Crear pago del cliente";
+}
+
+<h2>Pago del cliente</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id_Cliente,"Nombre y Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.DropDownListFor(model => model.Id_Cliente, Model.listaDeClientes)
+                @Html.ValidationMessageFor(model => model.Id_Cliente, "", new { @class = "text-danger" })
+            </div>
+        </div>*
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id_Venta, "Producto ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Id_Venta, Model.listaDeProductos)
+                @Html.ValidationMessageFor(model => model.Id_Venta, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cantidad_Pagada,"Pago" ,htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cantidad_Pagada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cantidad_Pagada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaDePago, "Fecha de Pago", htmlAttributes: new { @class = "control-label col-md-2", @Id = "fecha" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaDePago, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaDePago, "", new { @class = "text-danger" })
+            </div>
+            </div>
+            <script>
+            $( function() {
+                var fecha = $("#FechaDePago").datepicker({
+            dateFormat: "dd-mm-yy"
+                 });
+            });
+            </script>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

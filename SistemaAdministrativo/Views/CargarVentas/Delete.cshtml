@@ -1,0 +1,78 @@
+﻿@model SistemaAdministrativo.Models.VentasViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>¿Está seguro que desea eliminar la venta?</h3>
+<div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("Precio Real")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio_Real_Del_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Precio de venta")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precio_De_Venta_Del_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Talle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Talle)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Código de artículo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo_Articulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Producto vendido")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto_Vendido)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Fecha de venta")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_De_Venta)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="@Url.Action("Index")">
+                <button type="button" class="btn btn-primary btn-sm">
+                    <i class="glyphicon glyphicon-chevron-left"></i>
+                </button>
+            </a>
+            <input type="submit" value="Eliminar venta" class="btn btn-primary" />
+
+        </div>
+    }
+
+</div>

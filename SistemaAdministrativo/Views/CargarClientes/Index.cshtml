@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<DAL.Cliente>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Generic.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Listado De Clientes";
+}
+
+<h2>Listado De Clientes</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Cliente", "Create")
+
+    @Html.ActionLink("Buscar Clientes", "SearchClient", new { @class = "glyphicon glyphicon-search" })
+
+</p>
+<table class="table table-striped table-hover">
+    <tr class="active">  
+        <th>
+            @Html.DisplayName("Nombre")
+        </th>
+        <th>
+            @Html.DisplayName("Apellido")
+        </th>
+        <th>
+            @Html.DisplayName("Telefono")
+        </th>
+        <th>
+            @Html.DisplayName("Direccion")
+        </th>
+        <th>
+            @Html.DisplayName("Calle")
+        </th>
+        <th>
+            @Html.DisplayName("Fecha de alta")
+        </th>
+        <th>
+            @Html.DisplayName("Talle")
+        </th>
+        <th>
+            @Html.DisplayName("Recorrido")
+        </th>
+       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_De_Calle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_Alta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Talle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Recorrido)
+            </td>
+
+            <td class="acciones">
+                <a href="@Url.Action("Update", new { id = item.Id_Cliente })">
+                    <i class="glyphicon glyphicon-pencil btn-group-lg action-icon"></i>
+                    <span class="sr-only">Editar</span>
+                </a>
+
+                <a href="@Url.Action("Delete", new { id = item.Id_Cliente })">
+                    <i class="glyphicon glyphicon-trash btn-lg action-icon"></i>
+                    <span class="sr-only">Eliminar</span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Pagina @Model.PageNumber de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }))
