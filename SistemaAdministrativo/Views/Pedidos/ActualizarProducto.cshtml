@@ -1,0 +1,79 @@
+﻿@model SistemaAdministrativo.Models.PedidosViewModel
+
+
+@{
+    ViewBag.Title = "Crear Pedido";
+}
+
+<h2>Crear Pedido</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreDeProducto, "Nombre del Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreDeProducto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NombreDeProducto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TalleDelProducto, "Talle del Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TalleDelProducto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TalleDelProducto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Articulo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Articulo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Articulo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaDelPedido, "Fecha del Pedido", htmlAttributes: new { @class = "control-label col-md-2", @Id = "fecha" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaDelPedido, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaDelPedido, "", new { @class = "text-danger" })
+            </div>
+            <script>
+            $( function() {
+                var fecha = $("#Fecha_Del_Pedido").datepicker({
+            dateFormat: "dd-mm-yy"
+                 });
+            });
+            </script>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreDelCliente, "Nombre del Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreDelCliente, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NombreDelCliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear Pedido" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<div>
+    <a href="@Url.Action("Index")">
+        <button type="button" class="btn btn-primary btn-sm">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+        </button>
+    </a>
+</div>

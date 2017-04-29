@@ -140,17 +140,20 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CargarPagosController.cs" />
-    <Compile Include="Controllers\CargarPedidosController.cs" />
-    <Compile Include="Controllers\CargarClientesController.cs" />
-    <Compile Include="Controllers\CargarVentasController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
+    <Compile Include="Controllers\PagosController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ClientesConsultaViewModel.cs" />
     <Compile Include="Models\ClientesViewModel.cs" />
+    <Compile Include="Models\ComboProductoViewModel.cs" />
+    <Compile Include="Models\ListaDePagosViewModel.cs" />
     <Compile Include="Models\PagosViewModel.cs" />
     <Compile Include="Models\PedidosViewModel.cs" />
+    <Compile Include="Models\PruebaViewModel.cs" />
     <Compile Include="Models\VentasViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -196,19 +199,19 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\CargarClientes\Create.cshtml" />
-    <Content Include="Views\CargarClientes\Update.cshtml" />
-    <Content Include="Views\CargarClientes\Index.cshtml" />
-    <Content Include="Views\CargarClientes\Delete.cshtml" />
-    <Content Include="Views\CargarClientes\SearchClient.cshtml" />
-    <Content Include="Views\CargarPedidos\Update.cshtml" />
-    <Content Include="Views\CargarPedidos\Delete.cshtml" />
-    <Content Include="Views\CargarPedidos\index.cshtml" />
-    <Content Include="Views\CargarPedidos\Create.cshtml" />
-    <Content Include="Views\CargarPagos\Create.cshtml" />
-    <Content Include="Views\CargarVentas\Create.cshtml" />
-    <Content Include="Views\CargarVentas\Update.cshtml" />
-    <Content Include="Views\CargarVentas\Delete.cshtml" />
+    <Content Include="Views\Clientes\CrearCliente.cshtml" />
+    <Content Include="Views\Clientes\ActualizaCliente.cshtml" />
+    <Content Include="Views\Clientes\PaginaPrincipalClientes.cshtml" />
+    <Content Include="Views\Clientes\EliminarCliente.cshtml" />
+    <Content Include="Views\Clientes\SearchClient.cshtml" />
+    <Content Include="Views\Pedidos\ActualizarProducto.cshtml" />
+    <Content Include="Views\Pedidos\EliminarProducto.cshtml" />
+    <Content Include="Views\Pedidos\CrearProducto.cshtml" />
+    <Content Include="Views\Pagos\MostrarListaDePagos.cshtml" />
+    <Content Include="Views\Ventas\CrearVenta.cshtml" />
+    <Content Include="Views\Ventas\ActualizarVenta.cshtml" />
+    <Content Include="Views\Ventas\EliminarVenta.cshtml" />
+    <Content Include="Views\Pagos\RealizarPagos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

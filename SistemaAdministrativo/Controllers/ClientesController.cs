@@ -10,28 +10,28 @@ using SistemaAdministrativo.Models;
 using Newtonsoft.Json;
 
 
-namespace SistemaAdministrativo.Controllers
+namespace AdminGestion.Controllers
 {
-    public class CargarClientesController : Controller
+    public class ClientesController : Controller
     {
-        public CargarClientesDAO _clientesDAO;
+        public ClientesDAO _clientesDAO;
         private SistemaGestionEntities context;
 
         //Cargo los DAO en el constructor para poder utilizarlo en los Controladores que traigo de los DAO.
-        public CargarClientesController()
+        public ClientesController()
         {
-            _clientesDAO = new CargarClientesDAO();
+            _clientesDAO = new ClientesDAO();
             context = new SistemaGestionEntities();
         }
 
         //Se muestra la tabla con los datos de los clientes con un paginador
-        public ViewResult Index(int? pagina)
+        public ViewResult PaginaPrincipalClientes(int? pagina)
         {
             int tamañoDePagina = 10;
             int numeroPagina = pagina ?? 1;
             return View(context.Clientes.OrderBy(p => p.Id_Cliente).ToPagedList(numeroPagina, tamañoDePagina));
         }
-     //Levanta la vista SearchClient
+        //Levanta la vista SearchClient
         [HttpGet]
         public ActionResult SearchClient()
         {
@@ -45,32 +45,34 @@ namespace SistemaAdministrativo.Controllers
         [HttpPost]
         public ActionResult SearchClient(string text)
         {
-            var devolverListaDeClientes = _clientesDAO.CustomersSearch(text);
-            var filtroDeClientes = new List<ClientesConsultaViewModel>();
-            foreach (var cliente in devolverListaDeClientes)
+            var devolverListaDeClientesFiltrada = _clientesDAO.CustomersSearch(text);
+
+            var ListaDeClientesFiltrados = new List<ClientesConsultaViewModel>();
+
+            foreach (var cliente in devolverListaDeClientesFiltrada)
             {
-                filtroDeClientes.Add(new ClientesConsultaViewModel()
+                ListaDeClientesFiltrados.Add(new ClientesConsultaViewModel()
                 {
                     Id_Cliente = cliente.Id_Cliente,
                     Nombre = cliente.Nombre,
                     Apellido = cliente.Apellido,
                     Telefono = (int)cliente.Telefono,
                     Direccion = cliente.Direccion,
-                    Numero_De_Calle = (int)cliente.Numero_De_Calle,
-                    Fecha_Alta = cliente.Fecha_Alta,
+                    NumeroDeCalle = (int)cliente.Numero_De_Calle,
+                    FechaDeAlta = cliente.Fecha_Alta,
                     Recorrido = cliente.Recorrido,
                     Talle = cliente.Talle
                 });
             }
-            
 
-            string jsonResults = JsonConvert.SerializeObject(filtroDeClientes);
+
+            string jsonResults = JsonConvert.SerializeObject(ListaDeClientesFiltrados);
 
             return Json(jsonResults, JsonRequestBehavior.AllowGet);
         }
 
         //Levanta vista del Create usuario
-        public ActionResult Create()
+        public ActionResult CrearCliente()
         {
 
             return View();
@@ -79,36 +81,38 @@ namespace SistemaAdministrativo.Controllers
 
         //Se crea un Cliente 
         [HttpPost]
-        public ActionResult Create(ClientesViewModel cliente)
+        public ActionResult CrearCliente(ClientesViewModel cliente)
         {
-           
+
             var fechaString = DateTime.Today.ToString();
             //Guardo dentro de fechaSinHora la fecha con formato Dia-Mes-Año
             var fechaSinHora = fechaString.Split(' ').FirstOrDefault().Replace("/", "-");
 
             //Intenta insertar un cliente en la base de datos que ingresa el usuario mediante el ClientesViewModel
-            try { 
+            try
+            {
                 _clientesDAO.Insertar(new Cliente()
-                { 
+                {
                     Nombre = cliente.Nombre,
                     Apellido = cliente.Apellido,
                     Telefono = cliente.Telefono,
                     Direccion = cliente.Direccion,
-                    Numero_De_Calle = cliente.Numero_De_Calle,
+                    Numero_De_Calle = cliente.NumeroDeCalle,
                     Fecha_Alta = fechaSinHora,
                     Recorrido = cliente.Recorrido,
                     Talle = cliente.Talle
 
                 });
             }
-            catch(Exception ex) { 
+            catch (Exception ex)
+            {
                 //Enviar a pantalla con Tipo de error
             }
-            return Redirect("Index");
+            return Redirect("PaginaPrincipalClientes");
         }
 
         // Se muestran los datos del cliente que se requiere buscar (por Id)
-        public ActionResult Update(int id)
+        public ActionResult ActualizarCliente(int id)
         {
             var Cliente = _clientesDAO.BuscarPorId(id);
             //Muestra las propiedades que va a editar del cliente seleccionado por el usuario
@@ -117,7 +121,7 @@ namespace SistemaAdministrativo.Controllers
                 Nombre = Cliente.Nombre,
                 Apellido = Cliente.Apellido,
                 Direccion = Cliente.Direccion,
-                Numero_De_Calle = (int)Cliente.Numero_De_Calle,
+                NumeroDeCalle = (int)Cliente.Numero_De_Calle,
                 Telefono = (int)Cliente.Telefono,
                 Recorrido = Cliente.Recorrido,
                 Talle = Cliente.Talle
@@ -129,7 +133,7 @@ namespace SistemaAdministrativo.Controllers
 
         //Se actualizan los datos del cliente que el usuario elige (por Id)
         [HttpPost]
-        public ActionResult Update(ClientesViewModel cliente, int id)
+        public ActionResult ActualizarCliente(ClientesViewModel cliente, int id)
         {
             var idCliente = _clientesDAO.BuscarPorId(id);
 
@@ -138,61 +142,64 @@ namespace SistemaAdministrativo.Controllers
             {
                 idCliente.Telefono = cliente.Telefono;
                 idCliente.Direccion = cliente.Direccion;
-                idCliente.Numero_De_Calle = cliente.Numero_De_Calle;
-                idCliente.Numero_De_Calle = cliente.Numero_De_Calle;
+                idCliente.Numero_De_Calle = cliente.NumeroDeCalle;
                 idCliente.Recorrido = cliente.Recorrido;
                 idCliente.Talle = cliente.Talle;
 
                 _clientesDAO.Actualizar(idCliente);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 //Hacer cartel de error
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("PaginaPrincipalClientes");
 
         }
 
         //Se muestra los datos del usuario que se van a eliminar.
         //GET
-        public ActionResult Delete(int id)
+        public ActionResult EliminarCliente(int id)
         {
             var fechaString = DateTime.Today.ToString();
             //Guardo dentro de fechaSinHora la fecha con formato Dia-Mes-Año
             var fechaSinHora = fechaString.Split(' ').FirstOrDefault().Replace("/", "-");
 
             var Cliente = _clientesDAO.BuscarPorId(id);
-            try {
-            var datosDelClienteAEliminar = new ClientesViewModel
+            try
             {
-                Nombre = Cliente.Nombre,
-                Apellido = Cliente.Apellido,
-                Direccion = Cliente.Direccion,
-                Fecha_Alta = fechaSinHora,
-                Telefono = (int)Cliente.Telefono,
-                Numero_De_Calle = (int)Cliente.Numero_De_Calle,
-                Recorrido = Cliente.Recorrido,
-                Talle = Cliente.Talle
+                var datosDelClienteAEliminar = new ClientesViewModel
+                {
+                    Nombre = Cliente.Nombre,
+                    Apellido = Cliente.Apellido,
+                    Direccion = Cliente.Direccion,
+                    FechaDeAlta = fechaSinHora,
+                    Telefono = (int)Cliente.Telefono,
+                    NumeroDeCalle = (int)Cliente.Numero_De_Calle,
+                    Recorrido = Cliente.Recorrido,
+                    Talle = Cliente.Talle
 
-            };
-            return View(datosDelClienteAEliminar);
+                };
+                return View(datosDelClienteAEliminar);
             }
             catch (Exception ex)
             {
-
+                // Pantalla de error
             }
             //Revisar eso
-            return View ();
+            return View();
         }
         //Se elimina el cliente seleccionado
         [HttpPost]
-        public ActionResult Delete(int id, string s)
+        public ActionResult EliminarCliente(int id, string s)
         {
 
             _clientesDAO.Eliminar(id);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("PaginaPrincipalClientes");
 
         }
+
     }
+
 }

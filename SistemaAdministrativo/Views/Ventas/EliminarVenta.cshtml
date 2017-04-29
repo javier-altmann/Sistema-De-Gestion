@@ -1,12 +1,11 @@
 ﻿@model SistemaAdministrativo.Models.VentasViewModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar Venta";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar Venta</h2>
 
-<h3>¿Está seguro que desea eliminar la venta?</h3>
 <div>
 
     <dl class="dl-horizontal">
@@ -16,7 +15,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Precio_Real_Del_Producto)
+            @Html.DisplayFor(model => model.PrecioRealDelProducto)
         </dd>
 
         <dt>
@@ -24,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Precio_De_Venta_Del_Producto)
+            @Html.DisplayFor(model => model.PrecioDeVentaDelProducto)
         </dd>
 
         <dt>
@@ -40,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Codigo_Articulo)
+            @Html.DisplayFor(model => model.CodigoArticulo)
         </dd>
 
         <dt>
@@ -48,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Producto_Vendido)
+            @Html.DisplayFor(model => model.ProductoVendido)
         </dd>
 
         <dt>
@@ -56,12 +55,13 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Fecha_De_Venta)
+            @Html.DisplayFor(model => model.FechaDeVenta)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

@@ -5,11 +5,11 @@ using System.Web;
 
 namespace DAL
 {
-    public class CargarVentasDAO : BaseDAO<Venta>
+    public class VentasDAO : BaseDAO<Venta>
     {
         public SistemaGestionEntities context; 
 
-        public CargarVentasDAO()
+        public VentasDAO()
         {
             context = new SistemaGestionEntities();
         }

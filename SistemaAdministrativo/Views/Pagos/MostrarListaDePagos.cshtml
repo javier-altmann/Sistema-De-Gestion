@@ -1,0 +1,107 @@
+﻿
+
+@{
+    ViewBag.Title = "MostarListaDePagos";
+}
+
+<h2>MostarListaDePagos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="form-group">
+
+    <p>Desde: <input type="text" id="fechaInicial"></p>
+    <script>
+  $( function() {
+    $( "#fechaInicial" ).datepicker();
+  } );
+    </script>
+
+    <p>Hasta: <input type="text" id="fechaFinal"></p>
+    <script>
+  $( function() {
+    $( "#fechaFinal" ).datepicker();
+  } );
+    </script>
+</div>
+
+<div class="form-group">
+    <input type="button" class="form-control" onclick="javascript: GuardarAjax();" id="search" value="Buscar" />
+</div>
+
+
+<div class="col-md-9">
+    <table class="table table-list-search" id="MiTabla">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Codigo de Artículo</th>
+                <th>Producto</th>
+                <th>Saldo</th>
+                <th>Fecha de pago</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: items">
+            <tr>
+                <td data-bind="text: Nombre"></td>
+                <td data-bind="text: $data.Apellido"></td>
+                <td data-bind="text: $data.CodigoDeArticulo"></td>
+                <td data-bind="text: $data.Producto"></td>
+                <td data-bind="text: $data.Saldo"></td>
+                <td data-bind="text: $data.FechaDePago"></td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    function GuardarAjax() {
+        var fechaInicial = stringToDate($("#fechaInicial").val());
+        var fechaFinal = stringToDate($("#fechaFinal").val());
+
+        $.ajax({
+            url: '@Url.Action("GuardarAjax", "Pagos")',
+            type: "POST",
+            datatype: 'json',
+            data: { fechaInicial: fechaInicial.toISOString(), fechaFinal: fechaFinal.toISOString() },
+            success: function (data) {
+                listadoClientesInstance.items(JSON.parse(data));
+
+            }, error: function (data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function stringToDate(str) {
+        var fecha = str.split('/');
+        var anio = fecha[2];
+        var mes = (parseInt(fecha[0]) - 1).toString();
+        var dia = fecha[1];
+
+        return new Date(anio, mes, dia);
+    }
+
+
+</script>
+
+
+
+
+
+<script type="text/javascript" src="http://knockoutjs.com/downloads/knockout-3.4.2.js"></script>
+
+<script type="text/javascript">
+    var listadoClientes = function listadoClientes() {
+        this.items = ko.observableArray();
+
+    };
+    var listadoClientesInstance = new listadoClientes();
+    ko.applyBindings(listadoClientesInstance);
+
+</script>

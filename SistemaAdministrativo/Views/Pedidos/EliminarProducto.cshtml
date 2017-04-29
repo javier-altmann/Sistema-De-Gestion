@@ -1,5 +1,4 @@
 ﻿@model SistemaAdministrativo.Models.PedidosViewModel
-
 @{
     ViewBag.Title = "Elliminar Producto";
 }
@@ -14,7 +13,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nombre_De_Producto)
+            @Html.DisplayFor(model => model.NombreDeProducto)
         </dd>
 
         <dt>
@@ -22,7 +21,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Talle_Del_Producto)
+            @Html.DisplayFor(model => model.TalleDelProducto)
         </dd>
 
         <dt>
@@ -38,19 +37,20 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Fecha_Del_Pedido)
+            @Html.DisplayFor(model => model.FechaDelPedido)
         </dd>
         <dt>
             @Html.DisplayName("Nombre del Cliente")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nombre_Del_Cliente)
+            @Html.DisplayFor(model => model.NombreDelCliente)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -59,8 +59,9 @@
                     <i class="glyphicon glyphicon-chevron-left"></i>
                 </button>
             </a>
-            <input type="submit" value="Eliminar Producto" class="btn btn-primary" /> 
+            <input type="submit" value="Eliminar Producto" class="btn btn-primary" />
 
         </div>
     }
 </div>
+

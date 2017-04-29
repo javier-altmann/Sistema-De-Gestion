@@ -7,11 +7,11 @@ using System.Web;
 
 namespace DAL
 {
-    public class CargarClientesDAO : BaseDAO<Cliente>
+    public class ClientesDAO : BaseDAO<Cliente>
     {
         private SistemaGestionEntities context;
 
-        public CargarClientesDAO()
+        public ClientesDAO()
         {
             context = new SistemaGestionEntities();
         }

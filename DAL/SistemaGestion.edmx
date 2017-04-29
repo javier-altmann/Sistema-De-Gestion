@@ -27,7 +27,8 @@
           <Property Name="Id_Pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Venta" Type="int" Nullable="false" />
           <Property Name="Cantidad_Pagada" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="Fecha_De_Pago" Type="varchar" MaxLength="100" />
+          <Property Name="Fecha_De_Pago" Type="date" />
+          <Property Name="Saldo_Actual" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Pedidos">
           <Key>
@@ -119,7 +120,8 @@
           <Property Name="Id_Pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Venta" Type="Int32" Nullable="false" />
           <Property Name="Cantidad_Pagada" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="Fecha_De_Pago" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_De_Pago" Type="DateTime" Precision="0" />
+          <Property Name="Saldo_Actual" Type="Decimal" Precision="18" Scale="0" />
           <NavigationProperty Name="Venta" Relationship="Self.FK_Pagos_Id_Venta" FromRole="Pagos" ToRole="Ventas" />
         </EntityType>
         <EntityType Name="Pedido">
@@ -215,6 +217,7 @@
                 <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
                 <ScalarProperty Name="Cantidad_Pagada" ColumnName="Cantidad_Pagada" />
                 <ScalarProperty Name="Fecha_De_Pago" ColumnName="Fecha_De_Pago" />
+                <ScalarProperty Name="Saldo_Actual" ColumnName="Saldo_Actual" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

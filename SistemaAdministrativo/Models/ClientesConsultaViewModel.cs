@@ -21,11 +21,11 @@ namespace SistemaAdministrativo.Models
 
         public string Recorrido { get; set; }
 
-        public int Numero_De_Calle { get; set; }
+        public int NumeroDeCalle { get; set; }
 
-        public string Fecha_Alta { get; set; }
+        public string FechaDeAlta { get; set; }
 
-      
+
 
     }
 }

@@ -81,20 +81,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDAO.cs" />
-    <Compile Include="CargarClientesDAO.cs" />
-    <Compile Include="CargarPagosDAO.cs" />
-    <Compile Include="CargarVentasDAO.cs" />
     <Compile Include="Cliente.cs">
       <DependentUpon>SistemaGestion.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientesDAO.cs" />
     <Compile Include="Pago.cs">
       <DependentUpon>SistemaGestion.tt</DependentUpon>
     </Compile>
+    <Compile Include="PagosDAO.cs" />
     <Compile Include="Pedido.cs">
       <DependentUpon>SistemaGestion.tt</DependentUpon>
     </Compile>
-    <Compile Include="PedidosDAO.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SistemaGestion.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,11 +110,15 @@
     <Compile Include="Venta.cs">
       <DependentUpon>SistemaGestion.tt</DependentUpon>
     </Compile>
+    <Compile Include="VentasDAO.cs" />
+    <Compile Include="PedidosDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
     <Content Include="SistemaGestion.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SistemaGestion.edmx</DependentUpon>
@@ -129,11 +130,12 @@
       <LastGenOutput>SistemaGestion.cs</LastGenOutput>
     </Content>
     <Content Include="Web.Config" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="SistemaGestion.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SistemaGestion.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="packages.config" />
     <Content Include="SistemaGestion.edmx.diagram">
       <DependentUpon>SistemaGestion.edmx</DependentUpon>
     </Content>

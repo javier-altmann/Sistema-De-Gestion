@@ -11,16 +11,15 @@ namespace SistemaAdministrativo.Models
 
         public int Id_Pedidos { get; set; }
 
-        public string Nombre_De_Producto { get; set; }
+        public string NombreDeProducto { get; set; }
 
         [StringLength(200), Required(ErrorMessage = "El campo Talle es obligatorio")]
-        public string Talle_Del_Producto { get; set; }
-           
-        public string Nombre_Del_Cliente { get; set; }
+        public string TalleDelProducto { get; set; }
 
-        public string Fecha_Del_Pedido { get; set; }
+        public string NombreDelCliente { get; set; }
+
+        public string FechaDelPedido { get; set; }
 
         public string Articulo { get; set; }
-
     }
 }

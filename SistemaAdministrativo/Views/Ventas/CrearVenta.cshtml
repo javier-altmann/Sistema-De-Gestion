@@ -1,20 +1,20 @@
 ﻿@model SistemaAdministrativo.Models.VentasViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Crear Venta";
 }
 
-<h2>Create</h2>
+<h2>Crear Venta</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>VentasViewModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-      
+
         <div class="form-group">
             @Html.LabelFor(model => model.Id_Cliente, "Nombre y Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -24,18 +24,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Precio_Real_Del_Producto,"Precio de Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PrecioRealDelProducto, "Precio de Producto", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Precio_Real_Del_Producto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Precio_Real_Del_Producto, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PrecioRealDelProducto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PrecioRealDelProducto, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Precio_De_Venta_Del_Producto,"Precio de venta del producto" ,htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PrecioDeVentaDelProducto, "Precio de venta del producto", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Precio_De_Venta_Del_Producto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Precio_De_Venta_Del_Producto, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PrecioDeVentaDelProducto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PrecioDeVentaDelProducto, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -48,35 +48,35 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Codigo_Articulo, "Código del Artículo", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CodigoArticulo, "Código del Artículo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Codigo_Articulo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Codigo_Articulo, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CodigoArticulo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CodigoArticulo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Producto_Vendido,"Producto Vendido" ,htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProductoVendido, "Producto Vendido", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Producto_Vendido ,new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Producto_Vendido, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ProductoVendido, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductoVendido, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Fecha_De_Venta, "Fecha de Venta", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FechaDeVenta, "Fecha de Venta", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_De_Venta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_De_Venta, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FechaDeVenta, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaDeVenta, "", new { @class = "text-danger" })
             </div>
         </div>
         <script>
             $( function() {
-                var fecha = $("#Fecha_De_Venta").datepicker({
+                var fecha = $("#FechaDeVenta").datepicker({
             dateFormat: "dd-mm-yy"
                  });
             });
-            </script>
+        </script>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -92,3 +92,4 @@
 </a>
         </div>
     </div>
+

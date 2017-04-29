@@ -2,35 +2,18 @@
     ViewBag.Title = "Search";
 }
 
-@* Genero tabla de clientes por Javascript con el objeto Json del controller SearchClient mediante Ajax para 
-   que no se refresque la página.   *@
+@* Genero tabla de clientes por Javascript con el objeto Json del controller SearchClient mediante Ajax para
+    que no se refresque la página.   *@
 <script src="@Url.Content("~/Scripts/jquery.highlight-3.js")" type="text/javascript"></script>
 <script type="text/javascript">
         function buscarClientes() {
             $.ajax({
-                url: '@Url.Action("SearchClient", "CargarClientes")',
+                url: '@Url.Action("SearchClient", "Clientes")',
                 data: { text: $("#system-search").val() },
                 type: "post",
                 cache: false,
                 success: function (retorno) {
-                    $('.added').remove();
-                    var clientesObjeto = JSON.parse(retorno);
-                    var tabla = document.getElementById("MiTabla");
-
-                    for (i=0; i < clientesObjeto.length; i++){
-                        var fila = document.createElement("tr");
-                        fila.className = 'added';
-
-                        for (var key in clientesObjeto[i]) {
-                            var celda = document.createElement("td");
-                            celda.innerText = clientesObjeto[i][key];
-
-                            fila.appendChild(celda);
-
-                        }
-
-                        tabla.appendChild(fila);
-                    }
+                    listadoClientesInstance.items(JSON.parse(retorno));
 
                 },
 
@@ -67,8 +50,30 @@
                         <th>Fecha de Alta</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody data-bind="foreach: items">
+                    <tr>
+                        <td data-bind="text: Id_Cliente"></td>
+                        <td data-bind="text: Nombre"></td>
+                        <td data-bind="text: $data.Apellido"></td>
+                        <td data-bind="text: $data.Telefono"></td>
+                        <td data-bind="text: $data.Direccion"></td>
+                        <td data-bind="text: $data.Numero_De_Calle"></td>
+                        <td data-bind="text: $data.Talle"></td>
+                        <td data-bind="text: $data.Recorrido"></td>
+                        <td data-bind="text: $data.Fecha_Alta"></td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="http://knockoutjs.com/downloads/knockout-3.4.2.js"></script>
+<script type="text/javascript">
+    var listadoClientes = function listadoClientes() {
+        this.items = ko.observableArray();
+
+    };
+    var listadoClientesInstance = new listadoClientes();
+    ko.applyBindings(listadoClientesInstance);
+
+</script>

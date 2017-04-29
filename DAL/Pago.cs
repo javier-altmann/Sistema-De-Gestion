@@ -17,7 +17,8 @@ namespace DAL
         public int Id_Pago { get; set; }
         public int Id_Venta { get; set; }
         public Nullable<decimal> Cantidad_Pagada { get; set; }
-        public string Fecha_De_Pago { get; set; }
+        public Nullable<System.DateTime> Fecha_De_Pago { get; set; }
+        public Nullable<decimal> Saldo_Actual { get; set; }
     
         public virtual Venta Venta { get; set; }
     }

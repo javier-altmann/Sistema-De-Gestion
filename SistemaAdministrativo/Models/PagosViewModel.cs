@@ -24,7 +24,10 @@ namespace SistemaAdministrativo.Models
         [Required(ErrorMessage = "El campo Cantidad Pagada es obligatorio")]
         public decimal Cantidad_Pagada { get; set; }
 
-        public string FechaDePago { get; set; }
+        public DateTime FechaDePago { get; set; }
+
+        public decimal SaldoActual { get; set; }
+
 
 
 
