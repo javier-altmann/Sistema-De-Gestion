@@ -36,35 +36,33 @@
             </div>
         </div>
         <div class="col-md-9">
-            <table class="table table-list-search" id="MiTabla">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Telefono</th>
-                        <th>Direccion</th>
-                        <th>Calle</th>
-                        <th>Talle</th>
-                        <th>Recorrido</th>
-                        <th>Fecha de Alta</th>
-                    </tr>
-                </thead>
-                <tbody data-bind="foreach: items">
-                    <tr>
-                        <td data-bind="text: Id_Cliente"></td>
-                        <td data-bind="text: Nombre"></td>
-                        <td data-bind="text: $data.Apellido"></td>
-                        <td data-bind="text: $data.Telefono"></td>
-                        <td data-bind="text: $data.Direccion"></td>
-                        <td data-bind="text: $data.Numero_De_Calle"></td>
-                        <td data-bind="text: $data.Talle"></td>
-                        <td data-bind="text: $data.Recorrido"></td>
-                        <td data-bind="text: $data.Fecha_Alta"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-bordered table-hover" id="MiTabla">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Telefono</th>
+                            <th>Direccion</th>
+                            <th>Calle</th>
+                            <th>Talle</th>
+                            <th>Recorrido</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: items">
+                        <tr>
+                            <td data-bind="text: Nombre"></td>
+                            <td data-bind="text: $data.Apellido"></td>
+                            <td data-bind="text: $data.Telefono"></td>
+                            <td data-bind="text: $data.Direccion"></td>
+                            <td data-bind="text: $data.NumeroDeCalle"></td>
+                            <td data-bind="text: $data.Talle"></td>
+                            <td data-bind="text: $data.Recorrido"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
     </div>
 </div>
 <script type="text/javascript" src="http://knockoutjs.com/downloads/knockout-3.4.2.js"></script>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<SistemaAdministrativo.Models.PedidosViewModel>
+
+@{
+    ViewBag.Title = "Buscar Pedido";
+}
+
+<script src="~/js/buscador.js"></script>
+<h1>Buscar Pedido</h1>
+
+    <form method="get" action="@Url.Action("index", "Pedidos")">
+        @Html.TextBox("Fecha","" ,new { @Id = "texto" })
+        <script>
+  $( function() {
+      var fecha = $("#texto").datepicker({
+          dateFormat: "dd-mm-yy"
+      });
+  });
+
+      </script>
+        <input type="submit" value="Buscar" id="botonEnviar" @Url.Action("index", "Pedidos") />
+
+</form>
+<div class="box-body table-responsive no-padding">
+    <table class="table table-bordered table-hover" id="pedidos-tabla">
+        <tr>
+
+            <th>
+                @Html.DisplayName("Producto")
+            </th>
+            <th>
+                @Html.DisplayName("Talle")
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Articulo)
+            </th>
+
+            <th>
+                @Html.DisplayName("Fecha")
+            </th>
+
+            <th>
+                @Html.DisplayName("Cliente")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @if (Model == null)
+        {
+
+
+        }
+        else {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td id="datosNombreProducto">
+                        @Html.DisplayFor(modelItem => item.NombreDeProducto)
+                    </td>
+                    <td id="datosTalleProducto">
+                        @Html.DisplayFor(modelItem => item.TalleDelProducto)
+                    </td>
+                    <td id="datosArticuloProducto">
+                        @Html.DisplayFor(modelItem => item.Articulo)
+                    </td>
+                    <td id="datosFechaProducto">
+                        @Html.DisplayFor(modelItem => item.FechaDelPedido)
+                    </td>
+                    <td id="datosNombreDelCliente">
+                        @Html.DisplayFor(modelItem => item.NombreDelCliente)
+                    </td>
+
+                </tr>
+            }
+
+        }
+
+
+
+    </table>
+    <a href="@Url.Action("ExportarAExcel","Pedidos")" id="exportar" style="display: none;">Exportar </a>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

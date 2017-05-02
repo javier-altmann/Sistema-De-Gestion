@@ -11,8 +11,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>VentasViewModel</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
@@ -25,7 +23,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PrecioRealDelProducto, "Precio de Producto", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.PrecioRealDelProducto, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PrecioRealDelProducto, "", new { @class = "text-danger" })
             </div>
@@ -33,7 +31,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.PrecioDeVentaDelProducto, "Precio de venta del producto", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.PrecioDeVentaDelProducto, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PrecioDeVentaDelProducto, "", new { @class = "text-danger" })
             </div>
@@ -41,7 +39,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Talle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.Talle, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Talle, "", new { @class = "text-danger" })
             </div>
@@ -49,7 +47,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.CodigoArticulo, "Código del Artículo", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.CodigoArticulo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CodigoArticulo, "", new { @class = "text-danger" })
             </div>
@@ -57,7 +55,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ProductoVendido, "Producto Vendido", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.ProductoVendido, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProductoVendido, "", new { @class = "text-danger" })
             </div>
@@ -65,7 +63,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.FechaDeVenta, "Fecha de Venta", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-4">
                 @Html.EditorFor(model => model.FechaDeVenta, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaDeVenta, "", new { @class = "text-danger" })
             </div>
@@ -79,7 +77,7 @@
         </script>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear venta" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -90,6 +88,4 @@
         <i class="glyphicon glyphicon-chevron-left"></i>
     </button>
 </a>
-        </div>
-    </div>
-
+        

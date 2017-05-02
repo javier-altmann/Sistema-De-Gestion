@@ -27,11 +27,13 @@ namespace SistemaAdministrativo.Controllers
             _clientesDAO = new ClientesDAO();
         }
 
+
        
         public ActionResult MostrarListaDePagos() {
 
             return View();
         }
+        [HttpPost]
         public string GuardarAjax(DateTime fechaInicial, DateTime fechaFinal)
         {
 
@@ -59,6 +61,11 @@ namespace SistemaAdministrativo.Controllers
 
         }
 
+        //[HttpPost]
+        //public void TestTest(int n)
+        //{
+
+        //}
 
         public string buscarPedidosPorId(int id)
         {
